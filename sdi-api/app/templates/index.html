@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SDI Payout Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/styles/style.css" />
+  </head>
+  <body>
+    <h1>SDI Payout Predictor</h1>
+    <p class="muted">
+      Enter claim details and click Predict. Currency like <code>$1,800</code>.
+      Dates like <code>2022-03-04</code>.
+    </p>
+
+    <!-- ======= Step 1: Estimate (ML) ======= -->
+    <form id="claim-form">
+      <div>
+        <label>Lease City</label
+        ><input name="Lease City" placeholder="Summerville" />
+      </div>
+      <div>
+        <label>Lease State</label><input name="Lease State" placeholder="SC" />
+      </div>
+      <div>
+        <label>Lease Zip</label
+        ><input name="Lease Zip" placeholder="29485-6804" />
+      </div>
+
+      <div>
+        <label>Monthly Rent</label>
+        <input name="Monthly Rent" placeholder="$1,800" />
+      </div>
+      <div>
+        <label>Amount of Claim</label>
+        <input name="Amount of Claim" placeholder="$2,200" />
+      </div>
+      <div>
+        <label>Max Benefit</label
+        ><input name="Max Benefit" placeholder="$3,500" />
+      </div>
+
+      <div>
+        <label>Claim Date</label
+        ><input name="Claim Date" type="text" placeholder="2022-03-04" />
+      </div>
+      <div>
+        <label>Move-Out Date</label
+        ><input name="Move-Out Date" type="text" placeholder="2022-03-01" />
+      </div>
+      <div>
+        <label>Lease Start Date</label
+        ><input name="Lease Start Date" type="text" placeholder="2021-12-24" />
+      </div>
+      <div>
+        <label>Lease End Date</label
+        ><input name="Lease End Date" type="text" placeholder="2022-06-24" />
+      </div>
+
+      <div>
+        <label>Property Management Company</label
+        ><input
+          name="Property Management Company"
+          placeholder="New Heights Property Management"
+        />
+      </div>
+      <div>
+        <label>Termination Type</label>
+        <select name="Termination Type">
+          <option value="">-- Select --</option>
+          <option>Move-Out</option>
+          <option>Eviction</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Predict</button>
+        <button class="secondary" type="button" id="reset-btn">Reset</button>
+        <label
+          style="
+            margin-left: auto;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+          "
+        >
+          <input type="checkbox" id="clip" checked /> Clip to Max Benefit
+        </label>
+      </div>
+    </form>
+
+    <div id="result" class="result" style="display: none"></div>
+
+    <hr style="margin: 2rem 0" />
+
+    <!-- ======= Step 2: Final Payout (PDF + rules) ======= -->
+    <h2>Upload Move-Out Documents (Final Payout)</h2>
+
+    <form id="moveout-form" enctype="multipart/form-data">
+      <div id="fileInputs">
+        <div class="file-row">
+          <input type="file" name="files" accept="application/pdf" required />
+        </div>
+      </div>
+
+      <div class="full">
+        <button type="button" id="addFileBtn" style="margin: 8px">
+        + Add another file
+      </button>
+      </div>
+
+
+      <div class="actions">
+        <button type="submit">Extract Charges</button>
+      </div>
+    </form>
+
+    <div id="extract-result" class="result" style="display: none"></div>
+    <script type="module" src="/static/js/main.js"></script>
+  </body>
+</html>

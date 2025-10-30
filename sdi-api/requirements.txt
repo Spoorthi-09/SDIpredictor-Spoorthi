@@ -1,0 +1,11 @@
+fastapi==0.120.1
+uvicorn[standard]==0.38.0
+pydantic==2.12.3
+pandas==2.2.3
+joblib==1.5.2
+numpy==2.3.4
+scikit-learn
+xgboost      # only if your model.pkl used it; safe to keep
+pdfplumber   # for /extract-charges
+anthropic
+httpx
